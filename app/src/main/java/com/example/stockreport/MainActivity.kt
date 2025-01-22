@@ -81,7 +81,7 @@ class MainActivity : ComponentActivity() {
                             horizontalArrangement = Arrangement.End
                         ) {
                             Spacer(modifier = Modifier.width(8.dp))
-                            customImageButton(
+                            CustomImageButton(
                                 draw = R.drawable.filter,
                                 onClick = {
                                     showBottomSheet = true
@@ -276,7 +276,7 @@ fun CardContent(item: StockData) {
 }
 
 @Composable
-fun customImageButton(draw: Int, onClick: () -> Unit) {
+fun CustomImageButton(draw: Int, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .clickable { onClick() }
