@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class StockData(
     var Code: String,
-    var Name: String,
+    var Name: String? = null,
     var OpeningPrice: String? = null,
     var ClosingPrice: String? = null,
     var HighestPrice: String? = null,

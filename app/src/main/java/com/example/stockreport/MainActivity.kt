@@ -80,6 +80,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.End
                         ) {
+                            Spacer(modifier = Modifier.width(8.dp))
                             CustomImageButton(
                                 draw = R.drawable.filter,
                                 onClick = {

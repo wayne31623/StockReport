@@ -3,8 +3,9 @@ package com.example.stockreport.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stockreport.model.AssetsFileUtil
 import com.example.stockreport.model.StockData
+import com.example.stockreport.model.StockDataRepository
+import com.example.stockreport.network.TWSEApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,7 +27,7 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle): ViewModel()
 
     private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            val dataList = AssetsFileUtil.getUiStateData()
+            val dataList = StockDataRepository(TWSEApi.apiService).fetchAndMergeData()
             _uiState.value = dataList
         }
     }
