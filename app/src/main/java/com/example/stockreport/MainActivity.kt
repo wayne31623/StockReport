@@ -205,6 +205,7 @@ fun CardContent(item: StockData) {
         val change = item.Change?.toFloatOrNull()
         var cpColor = MaterialTheme.colorScheme.onBackground
         var cColor = MaterialTheme.colorScheme.onBackground
+        // check color
         if (closingPrice != null && monthlyAveragePrice != null) {
             if (closingPrice > monthlyAveragePrice) {
                 cpColor = Color.Red
@@ -212,6 +213,7 @@ fun CardContent(item: StockData) {
                 cpColor = Color.Green
             }
         }
+        // check color
         if (change != null) {
             if (change > 0) {
                 cColor = Color.Red
