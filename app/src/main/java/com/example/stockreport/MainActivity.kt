@@ -57,15 +57,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             StockReportTheme {
-                val uiState by viewModel.uiState.collectAsState()
-                val sheetState = rememberModalBottomSheetState()
-                val scope = rememberCoroutineScope()
-                var showBottomSheet by remember { mutableStateOf(false) }
-                var isDescending by remember { mutableStateOf(true) }
-                val showDialog = remember { mutableStateOf(false) }
-                val darkTheme = isSystemInDarkTheme()
-                var cContainerColor = MaterialTheme.colorScheme.surfaceVariant
-                var bsContainerColor = MaterialTheme.colorScheme.surface
+                val uiState by viewModel.uiState.collectAsState()                       // ui state
+                val sheetState = rememberModalBottomSheetState()                        // bottom sheet state
+                val scope = rememberCoroutineScope()                                    // coroutine scope
+                var showBottomSheet by remember { mutableStateOf(false) }         // show bottom sheet
+                var isDescending by remember { mutableStateOf(true) }             // descending order
+                val showDialog = remember { mutableStateOf(false) }               // show dialog
+                val darkTheme = isSystemInDarkTheme()                                   // show dark theme
+                var cContainerColor = MaterialTheme.colorScheme.surfaceVariant          // card color
+                var bsContainerColor = MaterialTheme.colorScheme.surface                // bottom sheet color
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
@@ -76,11 +76,11 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier.padding(innerPadding)
                     ) {
+                        // filter button
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.End
                         ) {
-                            Spacer(modifier = Modifier.width(8.dp))
                             CustomImageButton(
                                 draw = R.drawable.filter,
                                 onClick = {
@@ -90,6 +90,7 @@ class MainActivity : ComponentActivity() {
                             Spacer(modifier = Modifier.width(8.dp))
                         }
                         if (uiState.isEmpty()) {
+                            // show loading
                             Box(
                                 contentAlignment = Alignment.Center,
                                 modifier = Modifier.fillMaxSize()
@@ -102,6 +103,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         else {
+                            // show data
                             LazyColumn(
                                 modifier = Modifier.fillMaxSize()
                             ) {
@@ -141,6 +143,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     if (showBottomSheet) {
+                        // bottom sheet
                         ModalBottomSheet(
                             onDismissRequest = {
                                 showBottomSheet = false
@@ -189,6 +192,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Card content
+ */
 @Composable
 fun CardContent(item: StockData) {
     Column(
@@ -275,6 +281,9 @@ fun CardContent(item: StockData) {
     }
 }
 
+/**
+ * Filter button
+ */
 @Composable
 fun CustomImageButton(draw: Int, onClick: () -> Unit) {
     Box(

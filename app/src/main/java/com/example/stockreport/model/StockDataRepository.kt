@@ -10,9 +10,11 @@ class StockDataRepository(private val apiService: TWSEApiService) {
 
     suspend fun fetchAndMergeData(): List<StockData> {
         try{
+            // call api
             val baData = apiService.getBAData()
             val sdaaData = apiService.getSDAAData()
             val sdaData = apiService.getSDAData()
+            // merge data
             val mergedData = mergeLists(baData, sdaaData, sdaData)
             return mergedData.sortedByDescending { it.Code }
         } catch (e: Exception) {

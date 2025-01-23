@@ -17,23 +17,29 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle): ViewModel()
     val uiState: StateFlow<List<StockData>> = _uiState.asStateFlow()
 
     init {
+        // check saved state
         val savedUiState = savedStateHandle.get<List<StockData>>("uiState")
         if(savedUiState != null) {
             _uiState.value = savedUiState
         } else {
+            // load data
             loadData()
         }
     }
 
     private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
+            // call api
             val dataList = StockDataRepository(TWSEApi.apiService).fetchAndMergeData()
+            // save data
             _uiState.value = dataList
         }
     }
 
     fun reverseList() {
+        // reverse list
         _uiState.value = _uiState.value.reversed()
+        // save data
         savedStateHandle.set("uiState", _uiState.value)
     }
 }
