@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                 val scope = rememberCoroutineScope()                                    // coroutine scope
                 var showBottomSheet by remember { mutableStateOf(false) }         // show bottom sheet
                 var isDescending by remember { mutableStateOf(true) }             // descending order
-                val showDialog = remember { mutableStateOf(false) }               // show dialog
+                val selectedItem = remember { mutableStateOf<StockData?>(null) }  // selected item
                 val darkTheme = isSystemInDarkTheme()                                   // show dark theme
                 var cContainerColor = MaterialTheme.colorScheme.surfaceVariant          // card color
                 var bsContainerColor = MaterialTheme.colorScheme.surface                // bottom sheet color
@@ -111,35 +111,36 @@ class MainActivity : ComponentActivity() {
                                     val item = uiState[index]
                                     Card(
                                         onClick = {
-                                            showDialog.value = true
+                                            selectedItem.value = item
                                         },
                                         colors = CardDefaults.cardColors(
                                             containerColor = cContainerColor
                                         ),
                                         modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
                                     ) {
-                                        if (showDialog.value) {
-                                            AlertDialog(
-                                                onDismissRequest = { showDialog.value = false },
-                                                title = {
-                                                    Text(text = "資訊顯示")
-                                                },
-                                                text = {
-                                                    Text(text = "本益比 ${item.PEratio}\n殖利率 ${item.DividendYield}%\n股價淨值比 ${item.PBratio}")
-                                                },
-                                                confirmButton = {
-                                                    Button(onClick = { showDialog.value = false }) {
-                                                        Text("確定")
-                                                    }
-                                                }
-                                            )
-                                        }
                                         CardContent(item)
                                     }
                                     Spacer(modifier = Modifier.height(8.dp))
                                 }
                             }
-
+                            selectedItem.value?.let { item ->
+                                AlertDialog(
+                                    onDismissRequest = { selectedItem.value = null },
+                                    title = {
+                                        Text(text = "資訊顯示")
+                                    },
+                                    text = {
+                                        Text(
+                                            text = "本益比 ${item.PEratio}\n殖利率 ${item.DividendYield}%\n股價淨值比 ${item.PBratio}"
+                                        )
+                                    },
+                                    confirmButton = {
+                                        Button(onClick = { selectedItem.value = null }) {
+                                            Text("確定")
+                                        }
+                                    }
+                                )
+                            }
                         }
                     }
                     if (showBottomSheet) {
