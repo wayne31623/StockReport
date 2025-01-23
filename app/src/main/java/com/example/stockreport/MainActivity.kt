@@ -44,7 +44,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.stockreport.model.StockData
+import com.example.stockreport.model.data.StockData
 import com.example.stockreport.ui.theme.GhostWhite
 import com.example.stockreport.ui.theme.StockReportTheme
 import com.example.stockreport.viewmodel.MainViewModel

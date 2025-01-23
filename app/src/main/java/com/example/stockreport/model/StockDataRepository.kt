@@ -1,5 +1,9 @@
 package com.example.stockreport.model
 
+import com.example.stockreport.model.data.BWIBBU_ALL
+import com.example.stockreport.model.data.STOCK_DAY_ALL
+import com.example.stockreport.model.data.STOCK_DAY_AVG_ALL
+import com.example.stockreport.model.data.StockData
 import com.example.stockreport.network.TWSEApiService
 
 class StockDataRepository(private val apiService: TWSEApiService) {

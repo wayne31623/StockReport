@@ -3,7 +3,7 @@ package com.example.stockreport.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.stockreport.model.StockData
+import com.example.stockreport.model.data.StockData
 import com.example.stockreport.model.StockDataRepository
 import com.example.stockreport.network.TWSEApi
 import kotlinx.coroutines.Dispatchers

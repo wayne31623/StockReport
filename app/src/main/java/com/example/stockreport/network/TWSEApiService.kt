@@ -1,9 +1,8 @@
 package com.example.stockreport.network
 
-import com.example.stockreport.model.BWIBBU_ALL
-import com.example.stockreport.model.STOCK_DAY_ALL
-import com.example.stockreport.model.STOCK_DAY_AVG_ALL
-import kotlinx.serialization.json.Json
+import com.example.stockreport.model.data.BWIBBU_ALL
+import com.example.stockreport.model.data.STOCK_DAY_ALL
+import com.example.stockreport.model.data.STOCK_DAY_AVG_ALL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

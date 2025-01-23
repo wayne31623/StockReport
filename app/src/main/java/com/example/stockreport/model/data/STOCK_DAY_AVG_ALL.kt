@@ -1,4 +1,4 @@
-package com.example.stockreport.model
+package com.example.stockreport.model.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
