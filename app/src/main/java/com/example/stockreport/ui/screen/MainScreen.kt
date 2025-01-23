@@ -124,13 +124,11 @@ fun MainScreen(viewModel: MainViewModel) {
                             Text(text = "資訊顯示")
                         },
                         text = {
-                            Text(
-                                text = "本益比 ${item.PEratio}\n殖利率 ${item.DividendYield}%\n股價淨值比 ${item.PBratio}"
-                            )
+                            Text(text = "本益比 ${item.PEratio}\n殖利率 ${item.DividendYield}%\n股價淨值比 ${item.PBratio}")
                         },
                         confirmButton = {
                             Button(onClick = { selectedItem.value = null }) {
-                                Text("確定")
+                                Text(text = "確定")
                             }
                         }
                     )
@@ -257,19 +255,19 @@ fun CardContent(item: StockData) {
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             Row {
-                Text(text = "成交筆數", fontSize = 15.sp)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(text = item.Transaction.toString(), fontSize = 15.sp)
+                Text(text = "成交筆數", fontSize = 14.sp)
+                Spacer(modifier = Modifier.width(2.dp))
+                Text(text = item.Transaction.toString(), fontSize = 14.sp)
             }
             Row {
-                Text(text = "成交股數", fontSize = 15.sp)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(text = item.TradeVolume.toString(), fontSize = 15.sp)
+                Text(text = "成交股數", fontSize = 14.sp)
+                Spacer(modifier = Modifier.width(2.dp))
+                Text(text = item.TradeVolume.toString(), fontSize = 14.sp)
             }
             Row {
-                Text(text = "成交金額", fontSize = 15.sp)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(text = item.TradeValue.toString(), fontSize = 15.sp)
+                Text(text = "成交金額", fontSize = 14.sp)
+                Spacer(modifier = Modifier.width(2.dp))
+                Text(text = item.TradeValue.toString(), fontSize = 14.sp)
             }
         }
     }
