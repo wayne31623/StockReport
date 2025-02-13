@@ -37,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -75,12 +76,17 @@ fun MainScreen(viewModel: MainViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
-                CustomImageButton(
-                    draw = R.drawable.filter,
-                    onClick = {
-                        showBottomSheet = true
-                    }
-                )
+                Box(
+                    modifier = Modifier
+                        .clickable { showBottomSheet = true }
+                        .size(48.dp)
+                        .padding(8.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.filter),
+                        contentDescription = "filter"
+                    )
+                }
                 Spacer(modifier = Modifier.width(8.dp))
             }
             if (uiState.isEmpty()) {
@@ -90,7 +96,7 @@ fun MainScreen(viewModel: MainViewModel) {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     CircularProgressIndicator(
-                        modifier = Modifier.width(64.dp),
+                        modifier = Modifier.width(64.dp).testTag("loading_indicator"),
                         color = MaterialTheme.colorScheme.secondary,
                         trackColor = MaterialTheme.colorScheme.surfaceVariant,
                     )
@@ -188,7 +194,7 @@ fun MainScreen(viewModel: MainViewModel) {
 @Composable
 fun CardContent(item: StockData) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxWidth()
     ) {
         val monthlyAveragePrice = item.MonthlyAveragePrice?.toFloatOrNull()
         val closingPrice = item.ClosingPrice?.toFloatOrNull()
@@ -273,24 +279,6 @@ fun CardContent(item: StockData) {
     }
 }
 
-/**
- * Filter button
- */
-@Composable
-fun CustomImageButton(draw: Int, onClick: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .clickable { onClick() }
-            .size(48.dp)
-            .padding(8.dp)
-    ) {
-        Image(
-            painter = painterResource(id = draw),
-            contentDescription = ""
-        )
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
@@ -304,13 +292,5 @@ fun MainScreenPreview() {
 fun CardContentPreview() {
     StockReportTheme {
         CardContent(StockData("9105", "泰金寶-DR", "8.42", "8.40", "8.55", "8.35", "0.0500", "8.90", "10334", "54632322", "460971943", "31.29", "3.56", "2.06"))
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CustomImageButtonPreview() {
-    StockReportTheme {
-        CustomImageButton(draw = R.drawable.filter, onClick = {})
     }
 }
