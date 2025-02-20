@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stockreport.R
 import com.example.stockreport.model.data.StockData
-import com.example.stockreport.ui.theme.GhostWhite
+import com.example.stockreport.ui.theme.LightPurple
 import com.example.stockreport.ui.theme.StockReportTheme
 import com.example.stockreport.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
@@ -65,8 +65,8 @@ fun MainScreen(viewModel: MainViewModel) {
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         if(!darkTheme) {
-            cContainerColor = GhostWhite
-            bsContainerColor = GhostWhite
+            cContainerColor = LightPurple
+            bsContainerColor = LightPurple
         }
         Column(
             modifier = Modifier.padding(innerPadding)
